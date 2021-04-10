@@ -18,3 +18,8 @@ Enunciado:
 >10.Publicar en el repositorio personal SSL la carpeta 00-CHelloWorld con readme.md,hello.c, y output.txt .  
 >11.La última tarea es informar el usuario GitHub en la planilla indicada en el aula virtual.  - Texto citado del archivo general para TPs. Punto 3 "Hello, World!" en C.  
 
+
+Observaciones:
+PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\HolaMundo> gcc hello.c -std=c18 -o hello.exe
+PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\HolaMundo>
+Al compilar no salio ningún mensaje, esto quiere decir que se pudo compilar y crear el archivo ejecutable.
