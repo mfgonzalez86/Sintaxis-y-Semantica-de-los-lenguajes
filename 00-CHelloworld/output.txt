@@ -1,0 +1,2 @@
+PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\HolaMundo> ./hello
+Hello, World!
