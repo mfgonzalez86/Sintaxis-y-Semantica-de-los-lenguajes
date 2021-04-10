@@ -16,5 +16,5 @@
 >9. Ejecutar el programa, y capturar su salida en un archivo output.txt .  
 >10.Publicar en el repositorio personal SSL la carpeta 00-CHelloWorld con readme.md, hello.c, y output.txt .  
 >11.La última tarea es informar el usuario GitHub en la planilla indicada en el aula virtual.  
->- Texto citado del archivo general para TPs- Punto 3 "Hello, World!" en C
+>- Texto citado del archivo general para TPs- Punto 3 "Hello, World!" en C  
 #Se trabajo con Visual Studio Code, compilador C18
