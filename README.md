@@ -4,3 +4,8 @@
 #Legajo: 1209176  
 #Apellido: Gonzalez Sintas  
 #Nombre: Maria Fernanda  
+  
+  
+Proceso ->Preproceso _ Entrada->Codigo Fuente   
+                       Salida->Codigo Fuente Procesado
+Proceso ->Compilador _ Entrada->Codigo Fuente Procesado; Salida-> Codigo Ensamblador
