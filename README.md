@@ -18,6 +18,6 @@ Proceso ->Compilador _ Entrada->Codigo Fuente Procesado
 Proceso->Ensamblador _ Entrada->Codigo Ensamblador  
                        Salida-> Codigo Objeto  
   
-Proceso ->Linkeo _     Entrada->Codigo Objeto  
+Proceso ->Linker _     Entrada->Codigo Objeto  
                        Salida->Ejecutable
                       
