@@ -1,4 +1,0 @@
-PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\01-Interfaces_Make> make TablasDeConversion.exe
-gcc -std=c99   -c -o TablasDeConversion.o TablasDeConversion.c
-gcc -std=c99   -c -o Conversion.o Conversion.c
-gcc TablasDeConversion.o Conversion.o -o TablasDeConversion.exe -std=c99
