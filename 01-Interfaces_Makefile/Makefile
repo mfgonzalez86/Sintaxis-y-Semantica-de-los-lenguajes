@@ -1,4 +1,4 @@
-SOURCE = TablasDeConversion.c Conversion.c
+SOURCE = TablasDeConversion.c Conversion.c Conversion.h
 BIN = TablasDeConversion.exe
 OBJ = TablasDeConversion.o Conversion.o
 CC = gcc
