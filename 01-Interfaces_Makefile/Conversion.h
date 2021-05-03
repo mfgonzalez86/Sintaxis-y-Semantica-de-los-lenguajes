@@ -4,4 +4,4 @@
  *27042021
 */
 float Celsius(int);
-int Farenheit(float);
+float Farenheit(int);
