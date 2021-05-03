@@ -23,11 +23,11 @@ Enunciado:
 >>• Utilizar const.  
 >>• Utilizar for con declaración (C99).  
 
-Se crearon dos archivos tipo makeFile. 
-1- makeFile donde se declaran las dependencias para compilar y crear el ejecutable de tablasDeConversion
-2- makeTest donde se declaran las dependencias para compilar y crear el ejecutable de conversionTest
+Se crearon dos archivos tipo makeFile.   
+1- makeFile donde se declaran las dependencias para compilar y crear el ejecutable de tablasDeConversion  
+2- makeTest donde se declaran las dependencias para compilar y crear el ejecutable de conversionTest  
 
-Se procedió según los apuntes:
-Compiladores, Editores y Entornos de Desarrollo, Seccion 6.3. "Alternativa 3 -- Make con Makefile". 
-Interfaces & Make. Secciones 3 y 4.
-Trabajos de Sintaxis y Semántica de los Lenguajes. Sección 7
+Se procedió según los apuntes:  
+Compiladores, Editores y Entornos de Desarrollo, Seccion 6.3. "Alternativa 3 -- Make con Makefile".   
+Interfaces & Make. Secciones 3 y 4.  
+Trabajos de Sintaxis y Semántica de los Lenguajes. Sección 7  
