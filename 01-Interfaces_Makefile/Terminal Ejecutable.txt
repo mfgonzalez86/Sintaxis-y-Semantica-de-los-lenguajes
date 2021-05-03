@@ -1,3 +1,8 @@
+conversionTest.exe
+PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\01-Interfaces_Make> ./conversionTest.exe
+PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\01-Interfaces_Make> 
+
+TablasDeConversion.exe
 PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\01-Interfaces_Make> ./TablasDeConversion.exe
 Conversion de Farenheit a Celsius
   0 -17.78
