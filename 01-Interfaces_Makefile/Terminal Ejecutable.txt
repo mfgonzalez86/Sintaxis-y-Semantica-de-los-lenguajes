@@ -1,5 +1,4 @@
 PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\01-Interfaces_Make> ./TablasDeConversion.exe
-PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\01-Interfaces_Make> ./TablasDeConversion.exe
 Conversion de Farenheit a Celsius
   0 -17.78
  20  -6.67
@@ -28,7 +27,16 @@ Conversion de Celsius a Farenheit
  50 122.00
  60 140.00
  70 158.00
+ 80 176.00
  90 194.00
+100 212.00
 110 230.00
+120 248.00
 130 266.00
+140 284.00
 150 302.00
+160 320.00
+170 338.00
+180 356.00
+190 374.00
+200 392.00
