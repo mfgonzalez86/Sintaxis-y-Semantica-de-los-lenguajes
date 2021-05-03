@@ -9,12 +9,12 @@
 int main(void)
 {
     printf("Conversion de Farenheit a Celsius\n");
-    int fahr;
-    for (fahr=0;fahr<=300;fahr=fahr+20)
-    printf("%3d %6.1f\n",fahr,Celsius (fahr));
+    int grados;
+    for (grados=0;grados<=300;grados=grados+20)
+    printf("%3d %6.1f\n",grados,Celsius (grados));
 
     printf("Conversion de Celsius a Farenheit\n");
-    float cels;
-    for (cels=-17.8;cels<=148.9;cels=cels+11.1)
-    printf("%6.1f %3d\n",cels,Farenheit (cels));
+    float grados;
+    for (grados=0;grados<=200;grados=grados+10)
+    printf("%3d %6.2f\n",grados,Farenheit (grados));
 }
