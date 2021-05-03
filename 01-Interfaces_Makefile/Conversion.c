@@ -12,6 +12,6 @@ return (5.0/9.0)*(far-32);
 }
 
 /*Convierte de Celsius a Farenheit*/
-int Farenheit (float cel){
+float Farenheit (int cel){
     return (9.0/5.0*cel)+32;
 }
