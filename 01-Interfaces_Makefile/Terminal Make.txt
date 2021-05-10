@@ -1,7 +1,9 @@
-PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\01-Interfaces_Make> make
+PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\01-Interfaces_Make\SyL\01-Interfaces_Makefile> make     
 gcc -std=c99   -c -o TablasDeConversion.o TablasDeConversion.c
 gcc -std=c99   -c -o Conversion.o Conversion.c
-gcc TablasDeConversion.o Conversion.o -o TablasDeConversion.exe -std=c99
+gcc -std=c99   -c -o PrintTabla.o PrintTabla.c
+gcc TablasDeConversion.o Conversion.o PrintTabla.o -o TablasDeConversion.exe -std=c99
+PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\01-Interfaces_Make\SyL\01-Interfaces_Makefile> 
 
 PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\01-Interfaces_Make> make -f makefileTest   
 gcc conversionTest.o Conversion.o -o conversionTest.exe  -std=c99

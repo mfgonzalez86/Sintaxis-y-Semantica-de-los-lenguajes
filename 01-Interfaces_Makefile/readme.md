@@ -31,3 +31,5 @@ Se procedió según los apuntes:
 Compiladores, Editores y Entornos de Desarrollo, Seccion 6.3. "Alternativa 3 -- Make con Makefile".   
 Interfaces & Make. Secciones 3 y 4.  
 Trabajos de Sintaxis y Semántica de los Lenguajes. Sección 7  
+
+Luego de la Clase del 03-05-2021 se agregaron mejoras con comentarios personales junto con lo puntos extra.

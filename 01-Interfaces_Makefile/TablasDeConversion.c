@@ -6,15 +6,16 @@
 
 #include <stdio.h>
 #include "Conversion.h"
+#include "PrintTabla.h"
 int main(void)
 {
-    printf("Conversion de Farenheit a Celsius\n");
-    int grados;
-    for (grados=0;grados<=300;grados=grados+20)
-        printf("%3d %6.1f\n",grados,Celsius (grados));
+    const int upper=300;
+    const int step=20;
 
-    printf("Conversion de Celsius a Farenheit\n");
-   
-    for (grados=0;grados<=200;grados=grados+10)
-        printf("%3d %6.2f\n",grados,Farenheit (grados));
+    printf("\nConversion de Farenheit a Celsius\n");
+     PrintTabla(Celsius,upper,step);
+
+    printf("\nConversion de Celsius a Farenheit\n");
+      PrintTabla(Farenheit,upper,step);
+
 }
