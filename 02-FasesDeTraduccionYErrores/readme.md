@@ -29,6 +29,11 @@ indica el nombre del archivo de salida, cualesquiera sean las etapas cumplidas.
 incluye en el ejecutable generado la información necesaria para poder rastrear los errores usando un depurador, tal como GDB (GNU Debugger).  
 ## -v  
 muestra los comandos ejecutados en cada etapa de compilación y la versión del compilador. Es un informe muy detallado.  
+## -S 
+transforma el código C en el lenguaje ensamblador propio del procesador de nuestra máquina.  
+## as
+  $ as -o nombre.o nombre.s  
+crea el archivo en código objeto .o a partir del archivo en lenguaje ensamblador .s sin vincular.  
 
 2. La siguiente tarea es poner en uso lo que se encontró. Para eso se debe
 transcribir al readme.md cada comando ejecutado y su resultado o error
@@ -116,6 +121,157 @@ int printf(const char * restrict s, ...);
 int main(void){  
 int i=42;  
  prontf("La respuesta es %d\n");  
+
+## 2. Compilación  
+### punto (a)  Compilar el resultado y generar hello3.s, no ensamblar  
+PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\01-Interfaces_Make\SyL\02-FasesDeTraduccionYErrores> gcc -S hello3.i -o hello3.s  
+hello3.c: In function 'main':  
+hello3.c:4:2: warning: implicit declaration of function 'prontf'; did you mean 'printf'? [-Wimplicit-function-declaration]  
+    4 |  prontf("La respuesta es %d\n");  
+      |  ^~~~~~  
+      |  printf  
+hello3.c:4:2: error: expected declaration or statement at end of input  
+
+El error indica que espera fin de instrucción. Se entiende que corresponde a la falta de } en la función main.
+
+### punto (b). Corregir solo los errores, no los warnings, en el nuevo archivo hello4.c y empezar de nuevo, generar hello4.s, no ensamblar  
+
+int printf(const char * restrict s, ...);  
+int main(void){  
+int i=42;  
+ prontf("La respuesta es %d\n");  
+ }  
+
+se actualizó el archivo hello.c agregando la "}".  
+
+En la terminal se volvieron a correr los comandos  
+PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\01-Interfaces_Make\SyL\02-FasesDeTraduccionYErrores> gcc -E hello4.c -o hello4.i  
+PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\01-Interfaces_Make\SyL\02-FasesDeTraduccionYErrores> gcc -S hello4.i -o hello4.s  
+hello4.c: In function 'main':  
+hello4.c:4:2: warning: implicit declaration of function 'prontf'; did you mean 'printf'? [-Wimplicit-function-declaration]  
+    4 |  prontf("La respuesta es %d\n");  
+      |  ^~~~~~  
+      |  printf  
+PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\01-Interfaces_Make\SyL\02-FasesDeTraduccionYErrores>   
+Se observa en warming pero se pudo compilar.  
+
+
+### punto (c). Leer hello4.s, investigar sobrelenguajeensamblador,eindicardeformar sintética cual es el objetivo de ese código  
+
+	.file	"hello4.c" 
+	.text  
+	.def	___main;	.scl	2;	.type	32;	.endef  
+	.section .rdata,"dr"  
+LC0:  
+	.ascii "La respuesta es %d\12\0"  
+	.text  
+	.globl	_main  
+	.def	_main;	.scl	2;	.type	32;	.endef  
+_main:  
+LFB0:  
+	.cfi_startproc  
+	pushl	%ebp  
+	.cfi_def_cfa_offset 8  
+	.cfi_offset 5, -8  
+	movl	%esp, %ebp  
+	.cfi_def_cfa_register 5  
+	andl	$-16, %esp  
+	subl	$32, %esp  
+	call	___main  
+	movl	$42, 28(%esp)  
+	movl	$LC0, (%esp)  
+	call	_prontf  
+	movl	$0, %eax  
+	leave  
+	.cfi_restore 5  
+	.cfi_def_cfa 4, 4  
+	ret  
+	.cfi_endproc  
+LFE0:  
+	.ident	"GCC: (MinGW.org GCC Build-2) 9.2.0"  
+	.def	_prontf;	.scl	2;	.type	32;	.endef  
+ 
+ * Me falta averiguar
+### punto (d). Ensamblar hello4.s en hello4.o, no vincular  
+En la terminal:  
+PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\01-Interfaces_Make\SyL\02-FasesDeTraduccionYErrores> as -o hello4.o hello4.s  
+PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\01-Interfaces_Make\SyL\02-FasesDeTraduccionYErrores>   
+
+No se detectaron errores ni warnings.
+
+## 3. Vinculación 
+### punto (a). Vincular hello4.o con la biblioteca estándar y generar el ejecutable.  
+En la terminal:  
+PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\01-Interfaces_Make\SyL\02-FasesDeTraduccionYErrores>  gcc -o hello4.exe hello4.o  
+c:/mingw/bin/../lib/gcc/mingw32/9.2.0/../../../../mingw32/bin/ld.exe: hello4.o:hello4.c:(.text+0x1e): undefined reference to 'prontf'  
+collect2.exe: error: ld returned 1 exit status  
+PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\01-Interfaces_Make\SyL\02-FasesDeTraduccionYErrores>    
+El error indica que no encuentra la funcion "prontf"  
+### punto (b). Corregir en hello5.c y generar el ejecutable. Solo corregir lo necesario para que vincule.
+Se corrige cambiando la invocacion de "prontf" por "printf"  
+En la terminal:  
+Siguiendo los pasos..  
+PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\01-Interfaces_Make\SyL\02-FasesDeTraduccionYErrores> gcc -E hello5.c -o hello5.i  
+PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\01-Interfaces_Make\SyL\02-FasesDeTraduccionYErrores> gcc -S hello5.i -o hello5.s  
+PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\01-Interfaces_Make\SyL\02-FasesDeTraduccionYErrores> as -o hello5.o hello5.s  
+PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\01-Interfaces_Make\SyL\02-FasesDeTraduccionYErrores> gcc -o hello5.exe hello5.o  
+PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\01-Interfaces_Make\SyL\02-FasesDeTraduccionYErrores>   
+
+Dado que en este punto ya se compiló y vinculó, también podríamos escribir directamente en la consola    
+ gcc hello5.c  -o hello5  
+
+## punto (c). Ejecutar y analizar el resultado.
+En la terminal:  
+PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\01-Interfaces_Make\SyL\02-FasesDeTraduccionYErrores> ./hello5.exe  
+La respuesta es 4200688  
+PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\01-Interfaces_Make\SyL\02-FasesDeTraduccionYErrores>   
+
+La frase "la respuesta es" es parte de los carácteres ordinarios los cuales son copiados al flujo de salida.   
+El valor 4200688 no corresponde a la variable declarada dado que al printf no le pasamos por argumento la misma.  
+Creo que puede llegar a ser como una "reserva de espacio en memoria" por el formato %d que estamos indicando.  
+Para evaluar lo anteriormente planteado se volvió a compilar hello5 pero en vez de %d se paso %X, según el libro (página 206) x, X int; número hexadecimal sin signo (con un 0x o 0X inicial, usando abcdef o ABCDEF para 10,... 15)  
+La resuesta que se obtuvo fue:  
+PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\01-Interfaces_Make\SyL\02-FasesDeTraduccionYErrores> ./hello5.exe  
+La respuesta es 4018F0  
+
+Se volvió a compilar  pero esta vez indicando %3.1f en vez de %d.  
+Se obtuvo lo siguiente:  
+PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\01-Interfaces_Make\SyL\02-FasesDeTraduccionYErrores> ./hello5.exe  
+La respuesta es 0.0  
+Dado que se imprimió 0.0 se descarta la conclusión anterior y se establece que los valores que imprime pueden llegar a pertenecer a espacios en memeoria aleatorios. Dado que no se ha pasado argumento alguno, citando nuevamente el libro con el que trabajamos en clase:  
+Una advertencia: printf emplea su primer argumento para decidir cuántos  
+argumentos le siguen y cuáles son sus tipos, printf se confundirá y se obtendrán  
+resultados erróneos si no hay suficientes argumentos o si tienen tipos incorrectos.  
+
+## 4. Corrección de Bug
+### punto (a). Corregir en hello6.c y empezar de nuevo; verificar que funciona como se espera.
+Se cambió la línea de  
+ printf("La respuesta es %d\n")  
+por  
+ printf("La respuesta es %d\n",i)  
+
+PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\01-Interfaces_Make\SyL\02-FasesDeTraduccionYErrores>  gcc hello6.c  -o hello6    
+PS C:\Users\rowa\Desktop\Facultad\SyL\ejercicios\01-Interfaces_Make\SyL\02-FasesDeTraduccionYErrores> ./hello6.exe  
+La respuesta es 42  
+
+En este caso se pasa como argumento la variable i la cuál tiene asignada el valor de 42, al correr el ejecutable se muestra el valor correcto.  
+
+## 5. Remoción de prototipo
+### Punto (a). Escribir hello7.c, una nueva variante:
+int main(void){  
+ int i=42;  
+ printf("La respuesta es %d\n", i);  
+}  
+
+### Punto (b). Explicar porqué funciona.
+printf es una función que forma parte de la biblioteca std la cual se vincula en el Linker.   
+No es "extrictamente necesario" declarar el prototipo (header) para que funcione, si es lo más adecuado dado que evitamos tener errores en tiempo de ejecución si no estamos usando correctamente una función. Los argunmentos que se tranfieren al invocar la función están correctos.  
+
+
+
+
+
+
 
 
 
