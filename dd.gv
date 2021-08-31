@@ -1,0 +1,12 @@
+digraph {
+// Definición de nodos
+A [style="filled" fillcolor="gold"];
+B [nombre="Nodo B"];
+C;
+D;
+E;
+// Definición de conexiones
+A->B [valor="Conexión entre A y B"];
+B->C;
+D->E;
+}
